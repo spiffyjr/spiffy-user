@@ -12,7 +12,7 @@ class UserController extends AbstractActionController
     public function indexAction()
     {
         if (!$this->identity()) {
-            return $this->redirect()->toRoute('zfc_user/login');
+            return $this->redirect()->toRoute('spiffy_user/login');
         }
         return array();
     }

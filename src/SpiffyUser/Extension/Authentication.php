@@ -2,9 +2,12 @@
 
 namespace SpiffyUser\Extension;
 
-use Zend\Authentication\AuthenticationService;
+use SpiffyUser\Authentication\DoctrineAdapter;
 use SpiffyUser\Authentication\AdapterChain;
 use SpiffyUser\Form\LoginForm;
+use Zend\Authentication\AuthenticationService;
+use Zend\EventManager\EventInterface;
+use Zend\EventManager\EventManagerInterface;
 
 class Authentication extends AbstractExtension
 {
@@ -30,6 +33,14 @@ class Authentication extends AbstractExtension
     protected $loginForm;
 
     /**
+     * @param AuthenticationService $authenticationService
+     */
+    public function __construct(AuthenticationService $authenticationService)
+    {
+        $this->authenticationService = $authenticationService;
+    }
+
+    /**
      * @return string
      */
     public function getName()
@@ -38,11 +49,38 @@ class Authentication extends AbstractExtension
     }
 
     /**
-     * @param AuthenticationService $authenticationService
+     * {@inheritDoc}
      */
-    public function __construct(AuthenticationService $authenticationService)
+    public function attach(EventManagerInterface $events)
     {
-        $this->authenticationService = $authenticationService;
+        $this->listeners[] = $events->attach(Authentication::EVENT_LOGIN_PRE, array($this, 'onLogin'));
+        $this->listeners[] = $events->attach(Register::EVENT_REGISTER, array($this, 'onRegister'));
+    }
+
+    /**
+     * @param EventInterface $e
+     */
+    public function onLogin(EventInterface $e)
+    {
+        /** @var \SpiffyUser\Extension\Password $password */
+        $password = $this->getManager()->get('password');
+        $adapter  = new DoctrineAdapter($this->authenticationService->getAdapter(), $password);
+
+        /** @var \SpiffyUser\Extension\Authentication $auth */
+        $auth = $this->getManager()->get('authentication');
+        $auth->getAdapterChain()->addAdapter($adapter);
+    }
+
+    /**
+     * @param EventInterface $e
+     */
+    public function onRegister(EventInterface $e)
+    {
+        /** @var \SpiffyUser\Entity\UserInterface $user */
+        $user = $e->getTarget();
+
+        $this->objectManager->persist($user);
+        $this->objectManager->flush();
     }
 
     /**
@@ -90,7 +128,7 @@ class Authentication extends AbstractExtension
     }
 
     /**
-     * @param \SpiffyUser\Authentication\AdapterChain $adapterChain
+     * @param AdapterChain $adapterChain
      * @return $this
      */
     public function setAdapterChain(AdapterChain $adapterChain)
@@ -100,7 +138,7 @@ class Authentication extends AbstractExtension
     }
 
     /**
-     * @return \SpiffyUser\Authentication\AdapterChain
+     * @return AdapterChain
      */
     public function getAdapterChain()
     {
@@ -111,7 +149,7 @@ class Authentication extends AbstractExtension
     }
 
     /**
-     * @return \Zend\Authentication\AuthenticationService
+     * @return AuthenticationService
      */
     public function getAuthenticationService()
     {

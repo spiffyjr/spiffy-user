@@ -2,7 +2,7 @@
 
 return array(
     'routes' => array(
-        'zfc_user' => array(
+        'spiffy_user' => array(
             'type' => 'literal',
             'options' => array(
                 'route'    => '/user',

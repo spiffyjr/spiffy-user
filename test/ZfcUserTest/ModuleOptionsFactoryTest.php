@@ -21,7 +21,7 @@ class ModuleOptionsFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('SpiffyUser\ModuleOptions', $factory->createService($sm));
 
         $sm->setService('Configuration', array(
-            'zfc_user' => array(
+            'spiffy_user' => array(
                 'entityClass' => 'foo\bar'
             )
         ));

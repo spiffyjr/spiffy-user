@@ -13,7 +13,7 @@ class RegisterController extends AbstractActionController
     public function registerAction()
     {
         if ($this->identity()) {
-            return $this->redirect()->toRoute('zfc_user');
+            return $this->redirect()->toRoute('spiffy_user');
         }
         $prg  = $this->prg();
         $form = $this->getRegisterExtension()->getForm();
@@ -22,7 +22,7 @@ class RegisterController extends AbstractActionController
             return $prg;
         } elseif (false !== $prg) {
             if ($this->getRegisterExtension()->register($prg)) {
-                return $this->redirect()->toRoute('zfc_user');
+                return $this->redirect()->toRoute('spiffy_user');
             }
         }
 

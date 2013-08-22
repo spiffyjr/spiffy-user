@@ -6,7 +6,7 @@ interface UserInterface
 {
     /**
      * @param int $id
-     * @return UserInterface
+     * @return $this
      */
     public function setId($id);
 
@@ -17,7 +17,7 @@ interface UserInterface
 
     /**
      * @param string $email
-     * @return UserInterface
+     * @return $this
      */
     public function setEmail($email);
 
@@ -28,7 +28,7 @@ interface UserInterface
 
     /**
      * @param string $password
-     * @return UserInterface
+     * @return $this
      */
     public function setPassword($password);
 

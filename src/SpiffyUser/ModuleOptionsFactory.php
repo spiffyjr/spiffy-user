@@ -16,7 +16,7 @@ class ModuleOptionsFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $config  = $serviceLocator->get('Configuration');
-        $config  = isset($config['zfc_user']) ? $config['zfc_user'] : array();
+        $config  = isset($config['spiffy_user']) ? $config['spiffy_user'] : array();
 
         return new ModuleOptions($config);
     }

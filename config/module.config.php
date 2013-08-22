@@ -9,6 +9,17 @@ return array(
 
     'controllers' => include 'controller.config.php',
 
+    'doctrine' => array(
+        'authentication' => array(
+            'orm_default' => array(
+                'object_manager'      => 'Doctrine\ORM\EntityManager',
+                'identity_class'      => 'Application\Entity\User',
+                'identity_property'   => 'email',
+                'credential_property' => 'password'
+            )
+        ),
+    ),
+
     'router' => include 'router.config.php',
 
     'service_manager' => include 'service.config.php',
@@ -21,17 +32,19 @@ return array(
 
     'view_manager' => array(
         'template_map' => array(
-            'zfc-user/partial/form'      => __DIR__ . '/../view/zfc-user/partial/form.phtml',
-            'zfc-user/user/index'        => __DIR__ . '/../view/zfc-user/user/index.phtml',
-            'zfc-user/login/login'       => __DIR__ . '/../view/zfc-user/login/login.phtml',
-            'zfc-user/register/register' => __DIR__ . '/../view/zfc-user/register/register.phtml',
+            'spiffy-user/partial/form'      => __DIR__ . '/../view/spiffy-user/partial/form.phtml',
+            'spiffy-user/user/index'        => __DIR__ . '/../view/spiffy-user/user/index.phtml',
+            'spiffy-user/login/login'       => __DIR__ . '/../view/spiffy-user/login/login.phtml',
+            'spiffy-user/register/register' => __DIR__ . '/../view/spiffy-user/register/register.phtml',
         )
     ),
 
     // See SpiffyUser\ModuleOptions for a list of all options.
-    'zfc_user' => array(
+    'spiffy_user' => array(
         'extensions' => array(
             'authentication' => 'SpiffyUser\Extension\Authentication',
+
+            'doctrine' => 'SpiffyUser\Extension\Doctrine',
 
             'password' => array(
                 'type' => 'SpiffyUser\Extension\Password',
@@ -46,7 +59,7 @@ return array(
             'user' => array(
                 'type' => 'SpiffyUser\Extension\User',
                 'options' => array(
-                    'entity_class' => 'Application\Entity\User'
+                    'entity_class' => 'SpiffyUser\Entity\Orm\User'
                 )
             )
         )

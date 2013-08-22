@@ -27,6 +27,7 @@ class User extends AbstractExtension
     }
 
     /**
+     * @throws Exception\InvalidUserException
      * @return string
      */
     public function getPrototype()

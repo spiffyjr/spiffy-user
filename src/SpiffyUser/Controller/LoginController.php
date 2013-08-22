@@ -15,7 +15,7 @@ class LoginController extends AbstractActionController
         if ($this->identity()) {
             $this->getAuthExtension()->logout();
         }
-        return $this->redirect()->toRoute('zfc_user/login');
+        return $this->redirect()->toRoute('spiffy_user/login');
     }
 
     /**
@@ -26,7 +26,7 @@ class LoginController extends AbstractActionController
         $ext = $this->getAuthExtension();
 
         if ($this->identity()) {
-            return $this->redirect()->toRoute('zfc_user');
+            return $this->redirect()->toRoute('spiffy_user');
         }
         $prg  = $this->prg();
         $form = $this->getAuthExtension()->getLoginForm();
@@ -35,7 +35,7 @@ class LoginController extends AbstractActionController
             return $prg;
         } elseif (false !== $prg) {
             if ($ext->login($prg)->isValid()) {
-                return $this->redirect()->toRoute('zfc_user');
+                return $this->redirect()->toRoute('spiffy_user');
             }
         }
 

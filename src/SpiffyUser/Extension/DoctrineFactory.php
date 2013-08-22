@@ -5,7 +5,7 @@ namespace SpiffyUser\Extension;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class AuthenticationFactory implements FactoryInterface
+class DoctrineFactory implements FactoryInterface
 {
     /**
      * Create service
@@ -15,9 +15,9 @@ class AuthenticationFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        /** @var \Zend\Authentication\AuthenticationService $authService */
-        $authService = $serviceLocator->get('Zend\Authentication\AuthenticationService');
+        /** @var \SpiffyUser\ModuleOptions $options */
+        $options = $serviceLocator->get('SpiffyUser\ModuleOptions');
 
-        return new Authentication($authService);
+        return new Doctrine($serviceLocator->get($options->getObjectManagerService()));
     }
 }
