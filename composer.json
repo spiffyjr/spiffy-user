@@ -8,7 +8,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.4",
         "doctrine/common": "2.*",
         "zendframework/zend-authentication": "2.*",
         "zendframework/zend-cache": "2.*",
