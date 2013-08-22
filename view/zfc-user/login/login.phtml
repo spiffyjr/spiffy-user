@@ -1,0 +1,14 @@
+<h1>Login</h1>
+
+<?php
+$action = $this->url('zfc_user/login');
+echo $this->partial(
+    'zfc-user/partial/form',
+    array(
+        'form'   => $form,
+        'action' => $action
+    )
+);
+?>
+
+<p>New here? <a href="<?php echo $this->url('zfc_user/register')?>">Register for an account</a></p>

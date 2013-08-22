@@ -1,0 +1,50 @@
+{
+    "name": "zf-commons/zfc-user",
+    "description": "A highly extensible and pluggable user module for ZF2.",
+    "keywords": [
+        "zf2"
+    ],
+    "homepage": "https://github.com/ZF-Commons/ZfcUser",
+    "authors": [
+        {
+            "name": "Evan Coury",
+            "email": "me@evancoury.com",
+            "homepage": "http://blog.evan.pro/"
+        },
+        {
+            "name": "Kyle Spraggs",
+            "email": "theman@spiffyjr.me",
+            "homepage": "http://www.spiffyjr.me/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "doctrine/common": "2.*",
+        "zendframework/zend-authentication": "2.*",
+        "zendframework/zend-cache": "2.*",
+        "zendframework/zend-code": "2.*",
+        "zendframework/zend-config": "2.*",
+        "zendframework/zend-console": "2.*",
+        "zendframework/zend-crypt": "2.*",
+        "zendframework/zend-form": "2.*",
+        "zendframework/zend-modulemanager": "2.*",
+        "zendframework/zend-mvc": "2.*",
+        "zendframework/zend-serializer": "2.*",
+        "zendframework/zend-version": "2.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.*",
+        "satooshi/php-coveralls": "dev-master",
+        "spiffy/spiffy-test": "dev-master",
+        "zendframework/zend-config": "2.*",
+        "zendframework/zend-i18n": "2.*",
+        "zendframework/zend-session": "2.*",
+        "zendframework/zend-test": "2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "ZfcUser": "src/",
+            "ZfcUserTest": "test/"
+        }
+    }
+}
