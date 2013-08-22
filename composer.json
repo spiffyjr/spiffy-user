@@ -1,16 +1,6 @@
 {
-    "name": "zf-commons/zfc-user",
-    "description": "A highly extensible and pluggable user module for ZF2.",
-    "keywords": [
-        "zf2"
-    ],
-    "homepage": "https://github.com/ZF-Commons/ZfcUser",
+    "name": "spiffy/spiffy-user",
     "authors": [
-        {
-            "name": "Evan Coury",
-            "email": "me@evancoury.com",
-            "homepage": "http://blog.evan.pro/"
-        },
         {
             "name": "Kyle Spraggs",
             "email": "theman@spiffyjr.me",
@@ -43,8 +33,8 @@
     },
     "autoload": {
         "psr-0": {
-            "ZfcUser": "src/",
-            "ZfcUserTest": "test/"
+            "SpiffyUser": "src/",
+            "SpiffyUserTest": "test/"
         }
     }
 }
