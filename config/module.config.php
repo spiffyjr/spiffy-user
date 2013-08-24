@@ -59,7 +59,7 @@ return array(
             'user' => array(
                 'type' => 'SpiffyUser\Extension\User',
                 'options' => array(
-                    'entity_class' => 'SpiffyUser\Entity\Orm\User'
+                    'entity_class' => 'Application\Entity\User'
                 )
             )
         )

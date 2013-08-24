@@ -79,8 +79,12 @@ class Authentication extends AbstractExtension
         /** @var \SpiffyUser\Entity\UserInterface $user */
         $user = $e->getTarget();
 
-        $this->objectManager->persist($user);
-        $this->objectManager->flush();
+        /** @var \SpiffyUser\Extension\Doctrine $doctrine */
+        $doctrine = $this->getManager()->get('doctrine');
+        $om       = $doctrine->getObjectManager();
+
+        $om->persist($user);
+        $om->flush();
     }
 
     /**
