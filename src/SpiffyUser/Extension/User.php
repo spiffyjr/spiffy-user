@@ -27,6 +27,18 @@ class User extends AbstractExtension
     }
 
     /**
+     * @return \Doctrine\Common\Persistence\ObjectRepository
+     */
+    public function getRepository()
+    {
+        /** @var \SpiffyUser\Extension\Doctrine $doctrine */
+        $doctrine = $this->getManager()->get('doctrine');
+        $om       = $doctrine->getObjectManager();
+
+        return $om->getRepository($this->options['entity_class']);
+    }
+
+    /**
      * @throws Exception\InvalidUserException
      * @return string
      */
