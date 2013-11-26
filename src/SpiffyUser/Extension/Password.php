@@ -20,8 +20,7 @@ class Password extends AbstractExtension
      * @var array
      */
     protected $options = array(
-        'cost' => 14,
-        'salt' => 'create_your_own_salt!'
+        'cost' => 14
     );
 
     /**
