@@ -39,7 +39,6 @@ class Password extends AbstractExtension
         if (!$this->bcrypt) {
             $bcrypt = $this->bcrypt = new Bcrypt();
             $bcrypt->setCost($this->options['cost']);
-            $bcrypt->setSalt($this->options['salt']);
         }
         return $this->bcrypt;
     }

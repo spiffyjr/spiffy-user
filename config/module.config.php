@@ -50,7 +50,6 @@ return array(
                 'type' => 'SpiffyUser\Extension\Password',
                 'options' => array(
                     'cost' => 14,
-                    'salt' => 'change_the_default_salt!'
                 )
             ),
 
