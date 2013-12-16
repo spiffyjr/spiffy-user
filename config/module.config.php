@@ -16,8 +16,15 @@ return array(
                 'identity_class'      => 'Application\Entity\User',
                 'identity_property'   => 'email',
                 'credential_property' => 'password'
-            )
+            ),
         ),
+        'entity_resolver' => array(
+            'orm_default' => array(
+                'resolvers' => array(
+                    'SpiffyUser\Entity\UserInterface' => 'Application\Entity\User'
+                )
+            )
+        )
     ),
 
     'router' => include 'router.config.php',
@@ -59,7 +66,7 @@ return array(
                 'type' => 'SpiffyUser\Extension\User',
                 'options' => array(
                     'entity_class' => 'Application\Entity\User'
-                )
+                ),
             )
         )
     ),
