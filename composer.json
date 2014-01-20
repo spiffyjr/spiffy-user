@@ -21,7 +21,7 @@
         "zendframework/zend-modulemanager": "~2.2",
         "zendframework/zend-mvc": "~2.2",
         "zendframework/zend-serializer": "~2.2",
-        "zendframework/zend-version": "~2.2",
+        "zendframework/zend-version": "~2.2"
     },
     "require-dev": {
         "phpunit/phpunit": "3.*",
@@ -30,7 +30,7 @@
         "zendframework/zend-config": "~2.2",
         "zendframework/zend-i18n": "~2.2",
         "zendframework/zend-session": "~2.2",
-        "zendframework/zend-test": "~2.2",
+        "zendframework/zend-test": "~2.2"
     },
     "autoload": {
         "psr-0": {
@@ -39,8 +39,8 @@
         }
     },
     "extra": {
-      "branch-alias": {
-          "dev-develop": "1.x-dev"
-      }
-  }
+        "branch-alias": {
+            "dev-develop": "1.x-dev"
+        }
+    }
 }
