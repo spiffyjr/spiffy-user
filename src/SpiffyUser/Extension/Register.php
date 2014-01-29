@@ -95,6 +95,7 @@ class Register extends AbstractExtension
         }
 
         $event->setTarget($user);
+        $event->setParams($data);
         $manager->getEventManager()->trigger(static::EVENT_REGISTER, $event);
 
         return $user;
