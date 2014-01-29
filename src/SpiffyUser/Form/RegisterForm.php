@@ -55,6 +55,11 @@ class RegisterForm extends Form implements InputFilterProviderInterface
         return array(
             'email' => array(
                 'required' => true,
+                'validators' => array(
+                    array(
+                        'name' => 'emailaddress'
+                    )
+                )
             ),
             'password' => array(
                 'required' => true
