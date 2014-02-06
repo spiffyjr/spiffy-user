@@ -1,3 +1,8 @@
+<?php if ($result && !$result->isValid()) :?>
+<p>
+    Invalid identity or credential, please try again.
+</p>
+<?php endif; ?>
 <form method="post" action="<?php echo $action;?>">
     <?php $form->prepare(); ?>
 

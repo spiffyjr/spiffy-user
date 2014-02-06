@@ -30,16 +30,18 @@ class LoginController extends AbstractActionController
         }
         $prg  = $this->prg();
         $form = $this->getAuthExtension()->getLoginForm();
+        $params = array('form' => $form, 'result' => null);
 
         if ($prg instanceof Response) {
             return $prg;
         } elseif (false !== $prg) {
-            if ($ext->login($prg)->isValid()) {
+            $result = $ext->login($prg);
+            if ($result->isValid()) {
                 return $this->redirect()->toRoute('spiffy_user');
             }
+            $params['result'] = $result;
         }
-
-        return array('form' => $form);
+        return $params;
     }
 
     /**
