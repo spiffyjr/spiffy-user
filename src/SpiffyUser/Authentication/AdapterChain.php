@@ -62,6 +62,16 @@ class AdapterChain implements
     }
 
     /**
+     * Removes all previously set adapters.
+     *
+     * @return void
+     */
+    public function clearAdapters()
+    {
+        $this->adapters = array();
+    }
+
+    /**
      * {@inhericDoc}
      */
     public function setEventManager(EventManagerInterface $eventManager)
