@@ -4,6 +4,7 @@ namespace SpiffyUserTest\Authentication;
 
 use SpiffyUser\Authentication\AdapterChain;
 use SpiffyUserTest\Asset\ChainAdapter;
+use Zend\ServiceManager\ServiceManager;
 
 class AdapterChainTest extends \PHPUnit_Framework_TestCase
 {
@@ -103,5 +104,16 @@ class AdapterChainTest extends \PHPUnit_Framework_TestCase
         $expected = array('foo', 'bar');
         $this->chain->setEventParams($expected);
         $this->assertEquals($expected, $this->chain->getEventParams());
+    }
+
+    /**
+     * @covers \SpiffyUser\Authentication\AdapterChain::clearAdapters
+     */
+    public function testAdaptersCanBeCleared()
+    {
+        $this->chain->addAdapter($this->getMockForAbstractClass('SpiffyUser\Authentication\ChainableAdapterInterface'));
+        $this->assertSame(1, count($this->chain->getAdapters()));
+        $this->chain->clearAdapters();
+        $this->assertSame(0, count($this->chain->getAdapters()));
     }
 }
