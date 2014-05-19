@@ -68,7 +68,7 @@ Once your user entity has been registered it's time to tell SpiffyUser about it.
 
 ```
 'spiffy_user' => array(
-    'login_remember' => true,
+    'login_redirect' => true,
     'extensions' => array(
         'user' => array(
             'options' => array(
