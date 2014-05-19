@@ -48,6 +48,7 @@ return array(
 
     // See SpiffyUser\ModuleOptions for a list of all options.
     'spiffy_user' => array(
+        'login_redirect' => true,
         'extensions' => array(
             'authentication' => 'SpiffyUser\Extension\Authentication',
 

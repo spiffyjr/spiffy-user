@@ -68,6 +68,7 @@ Once your user entity has been registered it's time to tell SpiffyUser about it.
 
 ```
 'spiffy_user' => array(
+    'login_redirect' => true,
     'extensions' => array(
         'user' => array(
             'options' => array(
@@ -77,6 +78,7 @@ Once your user entity has been registered it's time to tell SpiffyUser about it.
     ),
 ),
 ```
+
 We also have to tell Doctrine to use your User entity as the identity class during authentication.  All the following within the 'doctrine' block of your module's configuration file:
 
 ```
@@ -90,3 +92,6 @@ We also have to tell Doctrine to use your User entity as the identity class duri
 ),
 ```
 
+If you are using a JavaScript-heavy application with many AJAX requests, you may wish to toggle the ``login_redirect`` option if you are not properly specifying Content-Types. This option toggles the module's ability to detect the previous page the user was on and redirect them there after signing in. It will store a return URL in a session variable if the Content-Type is ``text/html`` and the user is not current browsing the login route. This behavior is not compatible with fragments on URLs as they are client-side.
+
+You can manually override the auto-detected page with a ``/user/login?return=/some/path#fragment`` query string parameter on the login URL to support fragments.
