@@ -44,7 +44,7 @@ class Module implements
         $response = $e->getResponse();
         $route = $e->getRouteMatch();
 
-        if (!$route) {
+        if (!$route || $response instanceof \Zend\Console\Response) {
             return;
         }
 
