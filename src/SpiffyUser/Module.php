@@ -2,6 +2,7 @@
 
 namespace SpiffyUser;
 
+use Zend\Console\Response as ConsoleResponse;
 use Zend\EventManager\EventInterface;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;
@@ -44,7 +45,7 @@ class Module implements
         $response = $e->getResponse();
         $route = $e->getRouteMatch();
 
-        if (!$route || $response instanceof \Zend\Console\Response) {
+        if (!$route || $response instanceof ConsoleResponse) {
             return;
         }
 
