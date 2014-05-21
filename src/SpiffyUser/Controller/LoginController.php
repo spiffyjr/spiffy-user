@@ -29,7 +29,7 @@ class LoginController extends AbstractActionController
         if (isset($uri['return'])) {
             $parsed = parse_url(rawurldecode($uri['return']));
             $return = $parsed['path'];
-            if ($parsed['fragment']) {
+            if (isset($parsed['fragment'])) {
                 $return .= '#' . $parsed['fragment'];
             }
         } elseif (isset($uriContainer->return)) {
@@ -60,7 +60,7 @@ class LoginController extends AbstractActionController
         if (isset($uri['return'])) {
             $parsed = parse_url(rawurldecode($uri['return']));
             $return = $parsed['path'];
-            if ($parsed['fragment']) {
+            if (isset($parsed['fragment'])) {
                 $return .= '#' . $parsed['fragment'];
             }
         } elseif (isset($uriContainer->return)) {
