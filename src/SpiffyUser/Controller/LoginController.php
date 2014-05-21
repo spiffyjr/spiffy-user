@@ -21,10 +21,17 @@ class LoginController extends AbstractActionController
         $options = $this->getServiceLocator()->get('SpiffyUser\ModuleOptions');
         $uriContainer = new Container('uri');
 
+        /** @var \Zend\Http\Request $request */
+        $request = $this->getRequest();
+        $uri = $request->getQuery()->toArray();
+
         $return = false;
         if (isset($uri['return'])) {
-            $parsed = parse_url($uri['return']);
+            $parsed = parse_url(rawurldecode($uri['return']));
             $return = $parsed['path'];
+            if (isset($parsed['fragment'])) {
+                $return .= '#' . $parsed['fragment'];
+            }
         } elseif (isset($uriContainer->return)) {
             $uriContainer->return;
         }
@@ -51,8 +58,11 @@ class LoginController extends AbstractActionController
 
         $return = false;
         if (isset($uri['return'])) {
-            $parsed = parse_url($uri['return']);
+            $parsed = parse_url(rawurldecode($uri['return']));
             $return = $parsed['path'];
+            if (isset($parsed['fragment'])) {
+                $return .= '#' . $parsed['fragment'];
+            }
         } elseif (isset($uriContainer->return)) {
             $return = $uriContainer->return;
         }
