@@ -70,7 +70,9 @@ class LoginController extends AbstractActionController
         $ext = $this->getAuthExtension();
 
         if ($this->identity()) {
-            if ($options->getLoginRedirect() && $return) {
+            $current = sprintf('//%s%s', $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
+            
+            if ($options->getLoginRedirect() && $return && !strstr($return, $current)) {
                 return $this->redirect()->toUrl($return);
             } else {
                 return $this->redirect()->toRoute('spiffy_user');
