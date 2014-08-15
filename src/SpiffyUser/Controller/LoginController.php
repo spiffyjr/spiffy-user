@@ -26,14 +26,10 @@ class LoginController extends AbstractActionController
         $uri = $request->getQuery()->toArray();
 
         $return = false;
-        if (isset($uri['return'])) {
-            $parsed = parse_url(rawurldecode($uri['return']));
-            $return = $parsed['path'];
-            if (isset($parsed['fragment'])) {
-                $return .= '#' . $parsed['fragment'];
-            }
+        if (isset($uri['return']) && !parse_url($uri['return'], PHP_URL_SCHEME)) {
+            $return = rawurldecode($uri['return']);
         } elseif (isset($uriContainer->return)) {
-            $uriContainer->return;
+            $return = $uriContainer->return;
         }
 
         if ($options->getLoginRedirect() && $return) {
@@ -57,12 +53,8 @@ class LoginController extends AbstractActionController
         $uri = $request->getQuery()->toArray();
 
         $return = false;
-        if (isset($uri['return'])) {
-            $parsed = parse_url(rawurldecode($uri['return']));
-            $return = $parsed['path'];
-            if (isset($parsed['fragment'])) {
-                $return .= '#' . $parsed['fragment'];
-            }
+        if (isset($uri['return']) && !parse_url($uri['return'], PHP_URL_SCHEME)) {
+            $return = rawurldecode($uri['return']);
         } elseif (isset($uriContainer->return)) {
             $return = $uriContainer->return;
         }
@@ -71,7 +63,7 @@ class LoginController extends AbstractActionController
 
         if ($this->identity()) {
             $current = sprintf('//%s%s', $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
-            
+
             if ($options->getLoginRedirect() && $return && !strstr($return, $current)) {
                 return $this->redirect()->toUrl($return);
             } else {
