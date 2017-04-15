@@ -51,8 +51,8 @@ class DoctrineAdapter extends AbstractListenerAggregate implements ChainableAdap
             return;
         }
 
-        $this->adapter->setIdentity($e->getParam('email'));
-        $this->adapter->setCredential($e->getParam('password'));
+        $this->adapter->setIdentityValue($e->getParam('email'));
+        $this->adapter->setCredentialValue($e->getParam('password'));
 
         $passwordExtension = $this->passwordExtension;
         $this->adapter->getOptions()->setCredentialCallable(
@@ -78,7 +78,7 @@ class DoctrineAdapter extends AbstractListenerAggregate implements ChainableAdap
      */
     public function onTeardown(ChainEvent $e)
     {
-        $this->adapter->setIdentity(null);
-        $this->adapter->setCredential(null);
+        $this->adapter->setIdentityValue(null);
+        $this->adapter->setCredentialValue(null);
     }
 }
